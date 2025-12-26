@@ -51,10 +51,10 @@ closeInfoBtn.addEventListener('click', () => {
     infoPanel.style.display = 'none';
 });
 
-// Anatomy systems with local GLB links
+// Anatomy systems with local GLB files
 const systems = {
-    fullbody: 'models/human-anatomy.glb',       // your full human anatomy model
-    heart: 'models/realistic_human_heart.glb'  // your heart model
+    fullbody: 'human-anatomy.glb',
+    heart: 'realistic_human_heart.glb'
 };
 
 let loadedModels = {};
@@ -66,6 +66,7 @@ function loadSystem(name, path) {
             path,
             function (gltf) {
                 gltf.scene.name = name;
+                gltf.scene.visible = name === 'fullbody'; // Show full body by default
                 scene.add(gltf.scene);
                 loadedModels[name] = gltf.scene;
 
