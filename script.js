@@ -34,14 +34,14 @@ scene.add(dirLight);
 let loader = new THREE.GLTFLoader();
 const loadingOverlay = document.getElementById('loadingOverlay');
 
-// List of systems and model files
+// List of systems and model files (AnatomyTOOL hosted GLBs)
 const systems = {
-    skeletal: 'models/skeletal.glb',
-    muscular: 'models/muscular.glb',
-    circulatory: 'models/circulatory.glb',
-    nervous: 'models/nervous.glb',
-    digestive: 'models/digestive.glb',
-    respiratory: 'models/respiratory.glb'
+    skeletal: 'https://anatomytool.org/open3dmodel/models/skeleton.glb',
+    muscular: 'https://anatomytool.org/open3dmodel/models/muscles.glb',
+    circulatory: 'https://anatomytool.org/open3dmodel/models/circulatory.glb',
+    nervous: 'https://anatomytool.org/open3dmodel/models/nervous.glb',
+    digestive: 'https://anatomytool.org/open3dmodel/models/digestive.glb',
+    respiratory: 'https://anatomytool.org/open3dmodel/models/respiratory.glb'
 };
 
 let loadedModels = {};
