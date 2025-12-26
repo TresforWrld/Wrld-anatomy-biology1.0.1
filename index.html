@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+    <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
     <header class="header">
@@ -18,12 +18,8 @@
                     <h1>🧬 Anatomy Explorer</h1>
                 </div>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#skeletal" class="nav-link">Skeletal</a></li>
-                    <li class="nav-item"><a href="#muscular" class="nav-link">Muscular</a></li>
-                    <li class="nav-item"><a href="#circulatory" class="nav-link">Circulatory</a></li>
-                    <li class="nav-item"><a href="#nervous" class="nav-link">Nervous</a></li>
-                    <li class="nav-item"><a href="#digestive" class="nav-link">Digestive</a></li>
-                    <li class="nav-item"><a href="#respiratory" class="nav-link">Respiratory</a></li>
+                    <li class="nav-item"><a href="#fullbody" class="nav-link">Full Body</a></li>
+                    <li class="nav-item"><a href="#heart" class="nav-link">Heart</a></li>
                 </ul>
                 <div class="search-container">
                     <input type="text" id="searchInput" placeholder="Search anatomy..." class="search-input">
@@ -50,29 +46,13 @@
                     <div class="system-selector">
                         <h3>Body Systems</h3>
                         <div class="system-list">
-                            <div class="system-item active" data-system="skeletal">
-                                <input type="checkbox" id="skeletal-toggle" checked>
-                                <label for="skeletal-toggle">🦴 Skeletal System</label>
+                            <div class="system-item active" data-system="fullbody">
+                                <input type="checkbox" id="fullbody-toggle" checked>
+                                <label for="fullbody-toggle">🧍 Full Body Anatomy</label>
                             </div>
-                            <div class="system-item active" data-system="muscular">
-                                <input type="checkbox" id="muscular-toggle" checked>
-                                <label for="muscular-toggle">💪 Muscular System</label>
-                            </div>
-                            <div class="system-item active" data-system="circulatory">
-                                <input type="checkbox" id="circulatory-toggle" checked>
-                                <label for="circulatory-toggle">❤️ Circulatory System</label>
-                            </div>
-                            <div class="system-item active" data-system="nervous">
-                                <input type="checkbox" id="nervous-toggle" checked>
-                                <label for="nervous-toggle">🧠 Nervous System</label>
-                            </div>
-                            <div class="system-item active" data-system="digestive">
-                                <input type="checkbox" id="digestive-toggle" checked>
-                                <label for="digestive-toggle">🍽️ Digestive System</label>
-                            </div>
-                            <div class="system-item active" data-system="respiratory">
-                                <input type="checkbox" id="respiratory-toggle" checked>
-                                <label for="respiratory-toggle">🫁 Respiratory System</label>
+                            <div class="system-item active" data-system="heart">
+                                <input type="checkbox" id="heart-toggle" checked>
+                                <label for="heart-toggle">❤️ Heart</label>
                             </div>
                         </div>
                     </div>
@@ -141,27 +121,11 @@
                 <div class="legend-grid">
                     <div class="legend-item">
                         <div class="legend-color" style="background: #8B4513;"></div>
-                        <span>Skeleton</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #FF6B6B;"></div>
-                        <span>Muscles</span>
+                        <span>Full Body</span>
                     </div>
                     <div class="legend-item">
                         <div class="legend-color" style="background: #FF0000;"></div>
-                        <span>Blood Vessels</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #FFD700;"></div>
-                        <span>Nerves</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #FFA500;"></div>
-                        <span>Digestive Organs</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #87CEEB;"></div>
-                        <span>Respiratory System</span>
+                        <span>Heart</span>
                     </div>
                 </div>
             </div>
@@ -169,16 +133,16 @@
     </main>
 
     <footer class="footer">
-    <div class="footer-content">
-        <p>&copy; 2025 ANICADE ELEVATE. Educational purpose only.</p>
-        <p>3D anatomy models by <a href="https://anatomytool.org/open3dmodel" target="_blank">AnatomyTOOL</a> (CC BY-SA)</p>
-        <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#help">Help</a>
-            <a href="#references">References</a>
+        <div class="footer-content">
+            <p>&copy; 2025 ANICADE ELEVATE. Educational purpose only.</p>
+            <p>3D anatomy models by <a href="https://sketchfab.com/TresforWrld" target="_blank">Tresfor Wrld</a> (T BY-XD)</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#help">Help</a>
+                <a href="#references">References</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="script.js"></script>
 </body>
