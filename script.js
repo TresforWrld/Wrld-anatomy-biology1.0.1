@@ -51,14 +51,10 @@ closeInfoBtn.addEventListener('click', () => {
     infoPanel.style.display = 'none';
 });
 
-// Anatomy systems with GLB links
+// Anatomy systems with local GLB links
 const systems = {
-    skeletal: 'https://anatomytool.org/open3dmodel/models/skeleton.glb',
-    muscular: 'https://anatomytool.org/open3dmodel/models/muscles.glb',
-    circulatory: 'https://anatomytool.org/open3dmodel/models/circulatory.glb',
-    nervous: 'https://anatomytool.org/open3dmodel/models/nervous.glb',
-    digestive: 'https://anatomytool.org/open3dmodel/models/digestive.glb',
-    respiratory: 'https://anatomytool.org/open3dmodel/models/respiratory.glb'
+    fullbody: 'models/human-anatomy.glb',       // your full human anatomy model
+    heart: 'models/realistic_human_heart.glb'  // your heart model
 };
 
 let loadedModels = {};
