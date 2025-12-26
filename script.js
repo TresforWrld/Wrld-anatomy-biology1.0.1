@@ -34,7 +34,24 @@ scene.add(dirLight);
 let loader = new THREE.GLTFLoader();
 const loadingOverlay = document.getElementById('loadingOverlay');
 
-// List of systems and model files (AnatomyTOOL hosted GLBs)
+// Raycaster and mouse for clicks
+let raycaster = new THREE.Raycaster();
+let mouse = new THREE.Vector2();
+
+// Tooltip and info panel
+const tooltip = document.getElementById('tooltip');
+const infoPanel = document.getElementById('infoPanel');
+const partNameEl = document.getElementById('partName');
+const partDescriptionEl = document.getElementById('partDescription');
+const partFunctionEl = document.getElementById('partFunction');
+const partRelatedEl = document.getElementById('partRelated');
+const closeInfoBtn = document.getElementById('closeInfo');
+
+closeInfoBtn.addEventListener('click', () => {
+    infoPanel.style.display = 'none';
+});
+
+// Anatomy systems with GLB links
 const systems = {
     skeletal: 'https://anatomytool.org/open3dmodel/models/skeleton.glb',
     muscular: 'https://anatomytool.org/open3dmodel/models/muscles.glb',
@@ -55,15 +72,26 @@ function loadSystem(name, path) {
                 gltf.scene.name = name;
                 scene.add(gltf.scene);
                 loadedModels[name] = gltf.scene;
+
+                // Make every child clickable
+                gltf.scene.traverse((child) => {
+                    if (child.isMesh) {
+                        child.userData = {
+                            name: child.name || name,
+                            description: `This is the ${child.name || name}.`,
+                            function: 'Function information here.',
+                            related: ['Related parts here.']
+                        };
+                        child.material.transparent = false; // ensure visible
+                    }
+                });
+
                 resolve();
             },
-            function (xhr) {
-                // Optional: progress logging
-                // console.log(`${name}: ${(xhr.loaded / xhr.total * 100).toFixed(1)}% loaded`);
-            },
+            function (xhr) {},
             function (error) {
                 console.error(`Error loading ${name}:`, error);
-                resolve(); // Resolve anyway so spinner won't stay forever
+                resolve();
             }
         );
     });
@@ -76,7 +104,6 @@ async function loadAllSystems() {
         promises.push(loadSystem(name, path));
     }
     await Promise.all(promises);
-    // Hide overlay after all finished
     loadingOverlay.style.display = 'none';
 }
 loadAllSystems();
@@ -96,6 +123,39 @@ window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Handle clicks
+renderer.domElement.addEventListener('click', (event) => {
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(
+        Object.values(loadedModels).flatMap(model => model.children),
+        true
+    );
+
+    if (intersects.length > 0) {
+        const mesh = intersects[0].object;
+        const data = mesh.userData;
+
+        // Show tooltip
+        tooltip.style.display = 'block';
+        tooltip.style.left = event.clientX + 10 + 'px';
+        tooltip.style.top = event.clientY + 10 + 'px';
+        tooltip.innerHTML = data.name;
+
+        // Show info panel
+        infoPanel.style.display = 'block';
+        partNameEl.textContent = data.name;
+        partDescriptionEl.textContent = data.description;
+        partFunctionEl.textContent = data.function;
+        partRelatedEl.innerHTML = data.related.map(r => `<li>${r}</li>`).join('');
+    } else {
+        tooltip.style.display = 'none';
+    }
 });
 
 // Render loop
