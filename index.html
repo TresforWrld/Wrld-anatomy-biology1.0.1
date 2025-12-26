@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Human Anatomy Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>\ud83e\uddec Anatomy Explorer</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#skeletal" class="nav-link">Skeletal</a></li>
+                    <li class="nav-item"><a href="#muscular" class="nav-link">Muscular</a></li>
+                    <li class="nav-item"><a href="#circulatory" class="nav-link">Circulatory</a></li>
+                    <li class="nav-item"><a href="#nervous" class="nav-link">Nervous</a></li>
+                    <li class="nav-item"><a href="#digestive" class="nav-link">Digestive</a></li>
+                    <li class="nav-item"><a href="#respiratory" class="nav-link">Respiratory</a></li>
+                </ul>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search anatomy..." class="search-input">
+                    <button id="searchBtn" class="search-btn">\ud83d\udd0d</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Interactive 3D Human Anatomy</h2>
+                <p>Explore the human body in stunning detail with our interactive 3D models</p>
+                <div class="controls-info">
+                    <span>\ud83d\uddb1\ufe0f Click to select \u2022 \ud83d\udd04 Scroll to zoom \u2022 \ud83e\udd1a Drag to rotate</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="viewer-section">
+            <div class="viewer-container">
+                <div class="viewer-sidebar">
+                    <div class="system-selector">
+                        <h3>Body Systems</h3>
+                        <div class="system-list">
+                            <div class="system-item active" data-system="skeletal">
+                                <input type="checkbox" id="skeletal-toggle" checked>
+                                <label for="skeletal-toggle">\ud83e\uddb4 Skeletal System</label>
+                            </div>
+                            <div class="system-item active" data-system="muscular">
+                                <input type="checkbox" id="muscular-toggle" checked>
+                                <label for="muscular-toggle">\ud83d\udcaa Muscular System</label>
+                            </div>
+                            <div class="system-item active" data-system="circulatory">
+                                <input type="checkbox" id="circulatory-toggle" checked>
+                                <label for="circulatory-toggle">\u2764\ufe0f Circulatory System</label>
+                            </div>
+                            <div class="system-item active" data-system="nervous">
+                                <input type="checkbox" id="nervous-toggle" checked>
+                                <label for="nervous-toggle">\ud83e\udde0 Nervous System</label>
+                            </div>
+                            <div class="system-item active" data-system="digestive">
+                                <input type="checkbox" id="digestive-toggle" checked>
+                                <label for="digestive-toggle">\ud83c\udf7d\ufe0f Digestive System</label>
+                            </div>
+                            <div class="system-item active" data-system="respiratory">
+                                <input type="checkbox" id="respiratory-toggle" checked>
+                                <label for="respiratory-toggle">\ud83e\udec1 Respiratory System</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-controls">
+                        <h3>View Controls</h3>
+                        <button id="reset-view" class="control-btn">\ud83d\udd04 Reset View</button>
+                        <button id="front-view" class="control-btn">\u2b05\ufe0f Front</button>
+                        <button id="back-view" class="control-btn">\u27a1\ufe0f Back</button>
+                        <button id="top-view" class="control-btn">\u2b06\ufe0f Top</button>
+                        <button id="side-view" class="control-btn">\ud83d\udd04 Side</button>
+                    </div>
+
+                    <div class="display-options">
+                        <h3>Display Options</h3>
+                        <div class="option-group">
+                            <label>
+                                <input type="checkbox" id="show-labels" checked> Show Labels
+                            </label>
+                            <label>
+                                <input type="checkbox" id="show-grid"> Show Grid
+                            </label>
+                            <label>
+                                <input type="checkbox" id="transparent-mode"> Transparent Mode
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="viewer-main">
+                    <div id="canvas-container" class="canvas-container">
+                        <div class="loading-overlay" id="loadingOverlay">
+                            <div class="loading-spinner"></div>
+                            <p>Loading 3D models...</p>
+                        </div>
+                        <div class="tooltip" id="tooltip" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="info-panel" id="infoPanel" style="display: none;">
+                        <div class="info-header">
+                            <h3 id="partName">Anatomy Part</h3>
+                            <button id="closeInfo" class="close-btn">\u2715</button>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-details">
+                                <h4>Details</h4>
+                                <p id="partDescription">Select a part to see details...</p>
+                            </div>
+                            <div class="info-function">
+                                <h4>Function</h4>
+                                <p id="partFunction">...</p>
+                            </div>
+                            <div class="info-related">
+                                <h4>Related Structures</h4>
+                                <ul id="partRelated"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="legend-section">
+            <div class="legend-container">
+                <h3>Anatomy Legend</h3>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #8B4513;"></div>
+                        <span>Skeleton</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF6B6B;"></div>
+                        <span>Muscles</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FF0000;"></div>
+                        <span>Blood Vessels</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFD700;"></div>
+                        <span>Nerves</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFA500;"></div>
+                        <span>Digestive Organs</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #87CEEB;"></div>
+                        <span>Respiratory System</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 ANICADE ELEVATE. All rights reserved .Educational purpose only.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#help">Help</a>
+                <a href="#references">References</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+      </html>
+                                                                                                  
