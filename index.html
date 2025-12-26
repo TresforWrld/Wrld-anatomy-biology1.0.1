@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <h1>\ud83e\uddec Anatomy Explorer</h1>
+                    <h1>🧬 Anatomy Explorer</h1>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#skeletal" class="nav-link">Skeletal</a></li>
@@ -27,7 +27,7 @@
                 </ul>
                 <div class="search-container">
                     <input type="text" id="searchInput" placeholder="Search anatomy..." class="search-input">
-                    <button id="searchBtn" class="search-btn">\ud83d\udd0d</button>
+                    <button id="searchBtn" class="search-btn">🔍</button>
                 </div>
             </div>
         </nav>
@@ -39,7 +39,7 @@
                 <h2>Interactive 3D Human Anatomy</h2>
                 <p>Explore the human body in stunning detail with our interactive 3D models</p>
                 <div class="controls-info">
-                    <span>\ud83d\uddb1\ufe0f Click to select \u2022 \ud83d\udd04 Scroll to zoom \u2022 \ud83e\udd1a Drag to rotate</span>
+                    <span>🖱️ Click to select • 🔄 Scroll to zoom • 🤚 Drag to rotate</span>
                 </div>
             </div>
         </section>
@@ -52,38 +52,38 @@
                         <div class="system-list">
                             <div class="system-item active" data-system="skeletal">
                                 <input type="checkbox" id="skeletal-toggle" checked>
-                                <label for="skeletal-toggle">\ud83e\uddb4 Skeletal System</label>
+                                <label for="skeletal-toggle">🦴 Skeletal System</label>
                             </div>
                             <div class="system-item active" data-system="muscular">
                                 <input type="checkbox" id="muscular-toggle" checked>
-                                <label for="muscular-toggle">\ud83d\udcaa Muscular System</label>
+                                <label for="muscular-toggle">💪 Muscular System</label>
                             </div>
                             <div class="system-item active" data-system="circulatory">
                                 <input type="checkbox" id="circulatory-toggle" checked>
-                                <label for="circulatory-toggle">\u2764\ufe0f Circulatory System</label>
+                                <label for="circulatory-toggle">❤️ Circulatory System</label>
                             </div>
                             <div class="system-item active" data-system="nervous">
                                 <input type="checkbox" id="nervous-toggle" checked>
-                                <label for="nervous-toggle">\ud83e\udde0 Nervous System</label>
+                                <label for="nervous-toggle">🧠 Nervous System</label>
                             </div>
                             <div class="system-item active" data-system="digestive">
                                 <input type="checkbox" id="digestive-toggle" checked>
-                                <label for="digestive-toggle">\ud83c\udf7d\ufe0f Digestive System</label>
+                                <label for="digestive-toggle">🍽️ Digestive System</label>
                             </div>
                             <div class="system-item active" data-system="respiratory">
                                 <input type="checkbox" id="respiratory-toggle" checked>
-                                <label for="respiratory-toggle">\ud83e\udec1 Respiratory System</label>
+                                <label for="respiratory-toggle">🫁 Respiratory System</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="view-controls">
                         <h3>View Controls</h3>
-                        <button id="reset-view" class="control-btn">\ud83d\udd04 Reset View</button>
-                        <button id="front-view" class="control-btn">\u2b05\ufe0f Front</button>
-                        <button id="back-view" class="control-btn">\u27a1\ufe0f Back</button>
-                        <button id="top-view" class="control-btn">\u2b06\ufe0f Top</button>
-                        <button id="side-view" class="control-btn">\ud83d\udd04 Side</button>
+                        <button id="reset-view" class="control-btn">🔄 Reset View</button>
+                        <button id="front-view" class="control-btn">⬅️ Front</button>
+                        <button id="back-view" class="control-btn">➡️ Back</button>
+                        <button id="top-view" class="control-btn">⬆️ Top</button>
+                        <button id="side-view" class="control-btn">🔄 Side</button>
                     </div>
 
                     <div class="display-options">
@@ -114,7 +114,7 @@
                     <div class="info-panel" id="infoPanel" style="display: none;">
                         <div class="info-header">
                             <h3 id="partName">Anatomy Part</h3>
-                            <button id="closeInfo" class="close-btn">\u2715</button>
+                            <button id="closeInfo" class="close-btn">✕</button>
                         </div>
                         <div class="info-content">
                             <div class="info-details">
@@ -170,7 +170,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 ANICADE ELEVATE. All rights reserved .Educational purpose only.</p>
+            <p>&copy; 2025 ANICADE ELEVATE. Educational purpose only.</p>
             <div class="footer-links">
                 <a href="#about">About</a>
                 <a href="#help">Help</a>
@@ -181,5 +181,4 @@
 
     <script src="script.js"></script>
 </body>
-      </html>
-                                                                                                  
+</html>
