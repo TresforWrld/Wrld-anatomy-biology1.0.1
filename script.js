@@ -1,4 +1,3 @@
-
 // 3D Human Anatomy Explorer - Main JavaScript
 
 class AnatomyExplorer {
@@ -504,4 +503,4 @@ class AnatomyExplorer {
     }
 
     onMouseMove(event) {
-        const rect = this.renderer.domElement.
+        const rect = this.renderer.domElement.g
